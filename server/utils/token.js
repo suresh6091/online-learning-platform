@@ -1,0 +1,11 @@
+// utils/token.js
+const jwt = require('jsonwebtoken');
+
+// Function to create a JWT token
+function generateToken(user) {
+    return jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, {
+        expiresIn: '1h'
+    });
+}
+
+module.exports = generateToken; // Export the function for use in other files
