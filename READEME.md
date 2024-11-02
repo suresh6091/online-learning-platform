@@ -53,5 +53,3 @@ Super Admins can oversee all course content and user interactions.
                                                            [Log Out]
 
 
-                                                           hi
-
