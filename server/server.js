@@ -1,9 +1,10 @@
 // Load environment variables from .env
 require('dotenv').config();
 const express = require('express');
-const connectDB = require('./config/db'); // Assuming you have a db.js file for MongoDB connection
-const User = require('./models/User');  // Ensure correct path to your User model
-const Course = require('./models/Course');
+const connectDB = require('./config/db'); // MongoDB connection
+const authRoutes = require('./routes/authRoutes'); // Import authentication routes
+const courseRoutes = require('./routes/courseRoutes'); // Import course routes
+const protect = require('./middleware/authMiddleware'); // Import JWT auth middleware
 
 const app = express();
 
@@ -18,7 +19,16 @@ app.get('/', (req, res) => {
     res.send('Server is running');
 });
 
+// Use auth routes for registration and login
+app.use('/api/auth', authRoutes);
 
+// Example protected route
+app.get('/api/profile', protect, (req, res) => {
+    res.json({ message: 'This is your profile', user: req.user });
+});
+
+// Use course routes (protected)
+app.use('/api/courses', protect, courseRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 5000;
