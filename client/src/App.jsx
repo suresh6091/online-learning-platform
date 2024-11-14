@@ -5,6 +5,7 @@ import Home from './pages/Home'; // Import Home component
 import SignIn from './components/Auth/SignIn'; // Import SignIn component
 import SignUp from './components/Auth/SignUp'; // Import SignUp component
 import ProtectedRoute from './routes/ProtectedRoute'; // Import the protected route component
+import Courses from './pages/Courses';
 
 const App = () => {
   return (
